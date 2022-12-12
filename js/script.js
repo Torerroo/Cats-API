@@ -1,4 +1,4 @@
-const $wr = document.querySelector('[data-wr]')
+const $wr = document.querySelector('[data-wr]');
 
 getCatHTML = (cat) => {
     return `
@@ -13,10 +13,10 @@ getCatHTML = (cat) => {
             <p class="card__body-id">id: ${cat.id}</p>
             <p class="card__body-description">Кратко: ${cat.description}</p>
             <div class="delete__cat hidden-info">
-                    <form class ="form__delete-cat" action="https://cats.petiteweb.dev/api/single/Torerroo/delete" method="delete">
-                        <input type="submit" class="submit" value="Удалить">
-                    </form>
-                </div>
+                <form class ="form__delete-cat">
+                    <div class='delete-cat'>Удалить</div>
+                </form>
+            </div>
         </div>
     </div>     
     `
@@ -36,15 +36,21 @@ const modalWindow = (el) => {
 	const modal = el.currentTarget;
 	modal.querySelectorAll('.hidden-info').forEach((info) => info.classList.toggle('hidden-info-active'));
     modal.classList.toggle('modal')
-}
-
+        let res = modal.querySelector('.card__body-id')
+        let result = res.innerText.match(/[1-9]+/gi).join('')
+        console.log(result);
+        document.querySelector('.delete-cat').addEventListener('click', () => {
+            fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${result}`, {
+                method: 'delete'
+            })
+        })
+    }
 
 
 fetch('https://cats.petiteweb.dev/api/single/Torerroo/show/')
 	.then((res) => res.json())
 	.then((data) => {
-        console.log(data);
-		$wr.insertAdjacentHTML('afterbegin', data.map(cat => getCatHTML(cat)).join('') )
+		$wr.insertAdjacentHTML('afterbegin', data.map(cat => getCatHTML(cat)).join(''))
 	})
     .then(() => {
 		document.querySelectorAll('.card').forEach((card) => card.addEventListener('click', modalWindow))
