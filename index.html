@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Шрифты <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> -->
+    <!--animate <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> -->
+    <link rel="stylesheet" href="style.css">
+    <title>Cats</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__block">
+            <div class="header__block-left">
+                <h2>Cats</h2>
+            </div>
+            <div class="header__block-right">
+                <button id="btn">Добавить котика</button>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+        <div data-wr></div>
+    </section>
+    <div class="add__cat">
+        <form class ="form__cat" action="https://cats.petiteweb.dev/api/single/Torerroo/add/" method="post">
+            <div class="form__head">
+                <h2>Добавить кота</h2>
+                <div class="close__form">&times;</div>
+            </div>
+            <div class="form__body">
+                <label for="cat-name">Укажите имя:
+                    <input  name="name" type="text" id="cat-name" placeholder="Имя" required>
+                </label>
+                <label for="cat-age">Возраст питомца:
+                    <input name="age" type="number" id="cat-age">
+                </label>
+                <label for="cat-rate">Рейтинг:
+                    <input name="rate" type="number" min="0" max="10" id="cat-rate">
+                </label>
+                <label for="cat-favorite">Нравится?
+                    <label class="favorite-cat" for="cat-favorite__true"><input value="true" name="favorite" type="radio" id="cat-favorite__true">Да</label>
+                    <label class="favorite-cat" for="cat-favorite__false"><input value="false" name="favorite" type="radio" id="cat-favorite__false">Нет</label>
+                </label>
+                <label for="cat-id">id:
+                    <input name="id" type="text" id="cat-id" required>
+                </label>
+                <label for="cat-img">Фото:
+                    <input name="image" type="text" id="cat-img">
+                </label>
+                <label for="cat-description">Описание:
+                    <input name="description" type="text" id="cat-description">
+                </label>
+                <input type="submit" class="submit">
+            </div>
+        </form>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html> 

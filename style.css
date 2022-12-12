@@ -1,0 +1,215 @@
+/*Обнуление*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header{display: block;}
+
+html,body{
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+
+.header {
+	background-color: bisque;
+	height: 75px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 15px;
+	position: relative;
+}
+	.header__block {
+		display: flex;
+		justify-content: space-between;
+		width: 80%;
+	}
+		.header__block-left {
+			display: flex;
+			align-items: center;
+		}
+		.header__block-left h2 {
+			font-size: 35px;
+		}
+		.header__block-right {
+			display: flex;
+			gap: 30px;
+		}
+		.header__block-right button {
+			background-color: beige;
+			font-size: 25px;
+			padding: 5px;
+			border: 1px solid;
+			border-radius: 10px;
+			transition: background-color 0.5s;
+		}
+		.header__block-right:hover button {
+			background-color: burlywood;
+		}
+.container {
+	margin: 0px 20px;
+}
+.container > div {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+	.card {
+		cursor: pointer;
+		border: 1px solid black;
+		display: flex;
+		flex-direction: column;
+		width: 360px;
+		min-height: 360px;
+		border-radius: 5px;
+		background-color: beige;
+	}
+		.card img {
+			height: 250px;
+		}
+		.card__body {
+			display: grid;
+			gap: 10px;
+			padding: 5px;
+
+		}
+			.card__body-name {
+				text-align: center;
+				font-size: 25px;
+				position: relative;
+			}
+			.card__body-id {
+				position: absolute;
+				font-size: 16px;
+				opacity: 0.5;
+			}
+			.card__body-description {
+				font-size: 18px;
+			}
+			.hidden-info {
+				display: none;
+			}
+			.hidden-info-active {
+				display: block;
+			}
+
+/*--------------------*/
+
+.add__cat {
+	background-color: rgb(233, 229, 229);
+	position: fixed;
+	width: 70vw;
+	height: 70vh;
+	display: none;
+	justify-content: center;
+	top: 10%;
+	left: 15%;
+	border-radius: 10px;
+}
+input {
+	background-color: gainsboro;
+	border: 1px solid black;
+	border-radius: 3px;
+	font-size: 18px;
+}
+	.form__cat {
+		display: grid;
+		align-items: center;
+	}
+		.form__head {
+			display: flex;
+			font-size: 50px;
+		}
+			.close__form {
+				position: absolute;
+				top: -5px;
+				right: 5px;
+				cursor: pointer;
+				user-select: none;
+			}
+		.form__body {
+			display: grid;
+			gap: 10px;
+		}
+		.submit {
+			background-color: aquamarine;
+			cursor: pointer;
+		}
+		input {
+			width: 100%;
+		}
+		.favorite-cat {
+			display: inline-flex;
+		}
+
+/*-------------*/
+
+.modal {
+	position: fixed;
+	width: 70vw;
+	height: 70vh;
+	top: 10%;
+	left: 15%;
+	z-index: 10;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+.modal img {
+	height: 100%;
+	width: 100%;
+}
+.modal .card__body {
+	font-size: 40px;
+	display: flex;
+	flex-direction: column;
+}
+.modal .card__body h3 {
+	font-size: 60px;
+	margin-bottom: 35px;
+}
+
+.modal .card__body p {
+	font-size: 40px;
+}
+.card__close-icon {
+	cursor: pointer;
+	position: absolute;
+	top: -5px;
+	right: 5px;
+	font-size: 50px;
+}
+.form__delete-cat input {
+	background-color: #fff;
+	transition: all 0.3s;
+}
+.form__delete-cat:hover input {
+	background-color: cadetblue;
+}
