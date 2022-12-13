@@ -1,8 +1,9 @@
 const $wr = document.querySelector('[data-wr]');
+const del = document.querySelector('.delete-cat')
 
 getCatHTML = (cat) => {
     return `
-    <div class="card">
+    <div class="card" id="${cat.id}">
         <img src="${cat.image}" alt="Cat">
         <div class="card__body">
             <h3 class="card__body-name">${cat.name}</h3>
@@ -12,9 +13,9 @@ getCatHTML = (cat) => {
             <p class="card__body-favorite hidden-info">Нравится: ${cat.favorite}</p>
             <p class="card__body-id">id: ${cat.id}</p>
             <p class="card__body-description">Кратко: ${cat.description}</p>
-            <div class="delete__cat hidden-info">
+            <div class="form__delete hidden-info">
                 <form class ="form__delete-cat">
-                    <div class='delete-cat'>Удалить</div>
+                    <button class='delete-cat'>Удалить</button>
                 </form>
             </div>
         </div>
@@ -32,21 +33,6 @@ document.querySelector('#btn').addEventListener('click', () => {
     }
 })
 
-const modalWindow = (el) => {
-	const modal = el.currentTarget;
-	modal.querySelectorAll('.hidden-info').forEach((info) => info.classList.toggle('hidden-info-active'));
-    modal.classList.toggle('modal')
-        let res = modal.querySelector('.card__body-id')
-        let result = res.innerText.match(/[1-9]+/gi).join('')
-        console.log(result);
-        document.querySelector('.delete-cat').addEventListener('click', () => {
-            fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${result}`, {
-                method: 'delete'
-            })
-        })
-    }
-
-
 fetch('https://cats.petiteweb.dev/api/single/Torerroo/show/')
 	.then((res) => res.json())
 	.then((data) => {
@@ -55,3 +41,25 @@ fetch('https://cats.petiteweb.dev/api/single/Torerroo/show/')
     .then(() => {
 		document.querySelectorAll('.card').forEach((card) => card.addEventListener('click', modalWindow))
     })
+    .then(() => {
+        document.querySelectorAll('.card').forEach((card) => {
+            card.addEventListener('click', () => {
+                let catID = card.id
+                fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${catID}`, {
+                    method: 'delete'
+                })
+            })
+        })
+    })
+
+
+const modalWindow = (el) => {
+	const modal = el.currentTarget;
+	modal.querySelectorAll('.hidden-info').forEach((info) => info.classList.toggle('hidden-info-active'));
+    modal.classList.toggle('modal')
+}
+
+
+
+
+
