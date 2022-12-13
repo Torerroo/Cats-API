@@ -1,5 +1,4 @@
 const $wr = document.querySelector('[data-wr]');
-const del = document.querySelector('.delete-cat')
 
 getCatHTML = (cat) => {
     return `
@@ -42,14 +41,16 @@ fetch('https://cats.petiteweb.dev/api/single/Torerroo/show/')
 		document.querySelectorAll('.card').forEach((card) => card.addEventListener('click', modalWindow))
     })
     .then(() => {
-        document.querySelectorAll('.card').forEach((card) => {
-            card.addEventListener('click', () => {
-                let catID = card.id
-                fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${catID}`, {
-                    method: 'delete'
+        document.querySelectorAll('.card').forEach((el) => {
+            el.addEventListener('click', () => {
+                let catID = el.id
+                document.querySelector('.modal .delete-cat').addEventListener('click', () => {
+                    fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${catID}`, {
+                        method: 'delete'
+                    })
                 })
             })
-        })
+        });
     })
 
 
@@ -58,8 +59,6 @@ const modalWindow = (el) => {
 	modal.querySelectorAll('.hidden-info').forEach((info) => info.classList.toggle('hidden-info-active'));
     modal.classList.toggle('modal')
 }
-
-
 
 
 
