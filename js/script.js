@@ -2,7 +2,7 @@ const $wr = document.querySelector('[data-wr]');
 
 getCatHTML = (cat) => {
     return `
-    <div class="card" id="${cat.id}">
+    <div class="card" data-id="${cat.id}">
         <img src="${cat.image}" alt="Cat">
         <div class="card__body">
             <h3 class="card__body-name">${cat.name}</h3>
@@ -13,9 +13,7 @@ getCatHTML = (cat) => {
             <p class="card__body-id">id: ${cat.id}</p>
             <p class="card__body-description">Кратко: ${cat.description}</p>
             <div class="form__delete hidden-info">
-                <form class ="form__delete-cat">
-                    <button class='delete-cat'>Удалить</button>
-                </form>
+                <button data-action='delete' class='delete-cat'>Удалить</button>
             </div>
         </div>
     </div>     
@@ -40,18 +38,6 @@ fetch('https://cats.petiteweb.dev/api/single/Torerroo/show/')
     .then(() => {
 		document.querySelectorAll('.card').forEach((card) => card.addEventListener('click', modalWindow))
     })
-    .then(() => {
-        document.querySelectorAll('.card').forEach((el) => {
-            el.addEventListener('click', () => {
-                let catID = el.id
-                document.querySelector('.modal .delete-cat').addEventListener('click', () => {
-                    fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${catID}`, {
-                        method: 'delete'
-                    })
-                })
-            })
-        });
-    })
 
 
 const modalWindow = (el) => {
@@ -62,3 +48,18 @@ const modalWindow = (el) => {
 
 
 
+
+$wr.addEventListener('click', (e) => {
+    if(e.target.dataset.action) {    
+        const $catWr = e.target.closest('[data-id]')
+        const catId = $catWr.dataset.id
+        fetch(`https://cats.petiteweb.dev/api/single/Torerroo/delete/${catId}`, {
+            method: 'DELETE'
+        }).then((res) => {
+            if(res.status === 200) {
+                return $catWr.remove()
+            }
+            alert(`Не удалось удалить ${catId} котика`)
+        })
+    }
+})
